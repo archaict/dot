@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# set -euo pipefail
+#
+
+# SPARK_IMG=/home/hoa/spark-training.qcow2
+# -drive file=${SPARK_IMG},if=virtio,cache=off \
+
+# qemu-system-x86_64 -enable-kvm -boot d -drive file=$1.img -m 8G -cpu host -vga virtio -display sdl,gl=on -soundhw hda -device virtio-serial-pci -spice port=5930,disable-ticketing -device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 -chardev spicevmc,id=spicechannel0,name=vdagent
+quickemu --vm $1.conf

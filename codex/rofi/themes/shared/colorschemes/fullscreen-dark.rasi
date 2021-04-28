@@ -1,0 +1,9 @@
+// IMPORTANT
+* {
+  accent:           #fabd2f;
+  background:       #222222;
+  background-light: #303030;
+  background-focus: #505050;
+  foreground:       #f9f9f9;
+  foreground-list:  #f9f9f9;
+}

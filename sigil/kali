@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+quickemu --vm ~/Virtualize/Kali/kali.conf

@@ -1,0 +1,326 @@
+[colors]
+accent          = #88C0D0
+background      = #FAFAFA
+background-alt  = #FAFAFA
+foreground      = #444444
+foreground-alt  = #444444
+foreground-icon = #222222
+
+; accent          = #88C0D0
+; background      = #444444
+; background-alt  = #222222
+; foreground      = #BBBBBB
+; foreground-alt  = #BBBBBB
+; foreground-icon = #BBBBBB
+
+nord-blue       = #81A1C1
+nord-blue-light = #88C0D0
+nord-green      = #A3BE8C
+nord-purple     = #B48EAD
+nord-red        = #BF616A
+nord-yellow     = #EBCB8B
+nord-orange     = #D08770
+
+
+;polar-night-1 = #2E3440
+;polar-night-2 = #3B4252
+;polar-night-3 = #434C5E
+;polar-night-4 = #4C566A
+
+;snow-storm-1 = #D8DEE9
+;snow-storm-2 = #E5E9F0
+;snow-storm-3 = #ECEFF4
+
+; ┌─────────────────┐ ;
+; │░█▀▄░█▀█░█▀▄░█▀▀░│ ;
+; │░█▀▄░█▀█░█▀▄░▀▀█░│ ;
+; │░▀▀░░▀░▀░▀░▀░▀▀▀░│ ;
+; └─────────────────┘ ;
+
+[bar/bar]
+enable-ipc=true
+height = 30
+width = 100%
+top = true
+;tray-position = right
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+
+font-0 = "Iosevka SS08:style=Semibold:size=10"
+font-1 = "Sarasa Mono J:style=Semibold:size=10"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=11;-1"
+font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=11;-1"
+font-4 = "Font Awesome 5 Brands:pixelsize=11;-1"
+
+modules-left   = ewmh xwindow
+modules-center = time
+modules-right  = mpd bluetooth mic vpn battery temperature pulseaudio wlan power
+
+;wm-restack = i3
+wm-restack = qtile
+override-redirect = false
+
+[module/ewmh]
+type = internal/xworkspaces
+pin-workspaces = false
+enable-click = true
+enable-scroll = true
+
+; MOSTWM  
+icon-0 = a;
+icon-1 = s;
+icon-2 = d;
+icon-3 = o;
+icon-4 = p;
+
+; BSPWM
+icon-5 = 1;
+icon-6 = 2;
+icon-7 = 3;
+icon-8 = 4;
+icon-9 = 5;
+icon-default = ""
+
+format = <label-state>
+label-monitor = %icon%
+
+label-active =  %icon%
+label-active-foreground = ${colors.foreground-icon}
+label-active-background = ${colors.background-alt}
+label-active-underline = ${colors.accent}
+label-active-padding = 2
+
+label-occupied = %icon%
+label-occupied-foreground = ${colors.accent}
+label-occupied-background = ${colors.background-alt}
+label-occupied-padding = 2
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.foreground-alt}
+label-urgent-padding = 2
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+[module/xwindow]
+type                   = internal/xwindow
+label                  = CODEX // %title:0:30%
+format-foreground      = ${colors.foreground-alt}
+label-background       = ${colors.background}
+label-padding          = 2
+label-empty            = Codex
+label-empty-foreground = ${colors.foreground}
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+index-sort = true
+
+enable-click = true
+reverse-scroll = false
+
+label-focused = %index%
+label-focused-underline = ${colors.accent}
+label-focused-padding = 2
+
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+label-urgent = 
+label-urgent-padding = 2
+label-urgent-foreground = ${colors.background}
+label-urgent-background = ${colors.background}
+label-urgent-underline = ${colors.accent}
+label-urgent-font = 2
+
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-9 = 10;
+;ws-icon-default = 
+
+[module/mic]
+type = custom/script
+interval = 1
+format-padding = 1
+format =  <label>
+exec = bash ~/bin/polybar/mic-check show-vol
+click-left = bash ~/bin/polybar/mic-check mute-vol
+
+[module/power]
+type = custom/text
+content = 
+content-foreground = ${colors.foreground}
+click-left = ~/bin/polybar/shut-up
+content-padding = 2
+
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+label-song = %artist% // %title%
+label-offline =  Offline
+format-online = <toggle> <label-song>
+format-online-padding = 1
+format-online-foreground = ${colors.color4}
+format-online-background = ${colors.background}
+label-song-foreground = ${colors.color4}
+label-song-background = ${colors.background}
+label-song-padding = 0
+label-time-foreground = ${colors.color4}
+label-time-background = ${colors.background}
+label-time-padding = 0
+
+format-offline = <label-offline>
+format-offline-padding = 2
+format-offline-foreground = ${colors.color4}
+format-offline-background = ${colors.background}
+
+bar-progress-width = 15
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 30
+label-song-ellipsis = false
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-padding = 2
+format-foreground = ${colors.foreground}
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-padding = 2
+format-prefix = " "
+format-foreground = ${colors.foreground}
+label = %percentage_used%%
+click-left = $TERMINAL -e htop &
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected =  <label-connected>
+label-connected = %essid%
+format-disconnected = <label-disconnected>
+label-disconnected = %ifname% disconnected
+
+[module/eth]
+type = internal/network
+interface = enp6s0
+interval = 3.0
+
+format-connected-prefix = "E "
+format-connected-prefix-color1 = ${colors.background}
+label-connected = %local_ip%
+
+format-disconnected = <label-disconnected>
+label-disconnected = %ifname% disconnected
+
+[module/time]
+type = internal/date
+interval = 10
+format-margin = 0
+
+time = "%H:%M"
+date = "%d %b"
+
+label = %date% %time%
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+label-padding = 2
+
+[module/bluetooth]
+type = custom/script
+exec = bash ~/bin/polybar/bluetooth
+interval = 2
+format-padding = 1
+format-background = ${colors.background}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-margin = 1
+format-volume = <ramp-volume><label-volume>
+label-volume = %percentage:3:3%%
+format-volume-foreground = ${colors.foreground}
+format-volume-background = ${colors.background}
+format-volume-padding = 2
+use-ui-max = false
+interval = 5
+
+ramp-volume-0 = ""
+
+label-muted = " Sound Muted"
+label-muted-background = ${colors.background}
+label-muted-foreground = ${colors.foreground}
+label-muted-padding = 2
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format =  <ramp> <label>
+format-foreground = ${colors.foreground}
+format-warn = <ramp> <label-warn>
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-color1 = ${colors.foreground}
+
+ramp-0 = 
+ramp-foreground = ${colors.foreground}
+
+[module/battery]
+type        = internal/battery
+battery     = BAT1
+adapter     = ADP1
+full-at     = 98
+time-format = %H:%M
+
+format-charging-padding    = 2
+format-discharging-padding = 2
+format-full-padding        = 2
+
+format-charging    = <ramp-capacity> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full        = <ramp-capacity> <label-full>
+label-charging     = CHARGING %percentage%%
+label-discharging  = DISCHARGING %percentage%%
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+
+[module/vpn]
+type = custom/script
+format-prefix = "  "
+exec = bash ~/bin/polybar/vpn-running
+interval = 5
+format-foreground = ${colors.foreground}
+format-padding = 0
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0

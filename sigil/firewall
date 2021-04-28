@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# set -euo pipefail
+
+
+pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY gufw-pkexec $c_user

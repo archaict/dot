@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# set -euo pipefail
+
+bluetoothctl power on
+bluetoothctl agent on
+bluetoothctl default-agent
+bluetoothctl connect 41:42:9C:79:6F:DC

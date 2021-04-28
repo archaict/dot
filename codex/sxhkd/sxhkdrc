@@ -1,0 +1,83 @@
+# Reload Config
+
+super + shift + r
+  pkill -USR1 -x sxhkd
+
+# Application
+
+super + i
+  firefox
+# super + semicolon
+#   kitty
+super + space
+  rofi -show run
+
+# Functions
+
+super + m
+  pavucontrol
+F4
+  mic-toggle
+
+super + F5
+  refb # REFRESH Bluetooth
+super + control + F5
+  bluetoothctl power off
+
+F1
+  amixer -D pulse set Master toggle
+F2
+  amixer -D pulse sset Master '5%-'
+F3
+  amixer -D pulse sset Master '5%+'
+
+XF86AudioPlay
+  playerctl play-pause
+XF86AudioPause
+  playerctl play-pause
+
+super + BackSpace
+  amixer -D pulse set Master toggle
+super + minus
+  amixer -D pulse sset Master '5%-'
+super + equal
+  amixer -D pulse sset Master '5%+'
+
+F11
+  light -U 2
+F12
+  light -A 2
+
+super + F1
+  mpc toggle
+super + F2
+  mpc prev
+super + F3
+  mpc next
+
+super + F2
+  miconf dec-vol
+super + F3
+  miconf inc-vol
+
+# Operation
+
+F9
+  lock
+super + Delete
+  lock
+super + 0
+  polybar-msg cmd toggle
+
+# EMACS: Unleash your inner DAEMON!
+
+super + v
+   emacsclient -c -a 'emacs'
+super + b
+  emacsclient -c -a 'emacs'  --eval '(ibuffer)'
+super + slash
+  kitty -e xplr
+# emacsclient -c -a 'emacs'  --eval '(dired nil)'
+super + Return
+  kitty
+# emacsclient -c -a 'emacs'  --eval '(+vterm/here nil)'

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+NORM=/tmp/screenshot.png
+BLUR=/tmp/screenshot-blur.png
+rm $NORM
+scrot $NORM
+convert $NORM -blur 0x20 $BLUR
+i3lock -i $BLUR \
+    --insidecolor=22222222 --ringcolor=444444 --line-uses-inside --keyhlcolor=fabd2fff \
+    --bshlcolor=888888ff --separatorcolor=00000000 --insidevercolor=888888ff \
+    --insidewrongcolor=22222222 --ringvercolor=44444444 --ringwrongcolor=888888ff \
+    --radius=15 --veriftext= "" --wrongtext=" " --clock \
+    --timepos='x+190:y+1010' --timecolor='ffffffff' --datecolor='00000000' --indpos='x+90:y+1000' --indicator

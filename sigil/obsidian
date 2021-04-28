@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# set -euo pipefail
+
+flatpak run md.obsidian.Obsidian

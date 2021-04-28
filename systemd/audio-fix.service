@@ -1,0 +1,8 @@
+[Unit]
+Description=Audio Fix
+
+[Service]
+ExecStart=/home/codex/bin/audio-fix
+
+[Install]
+WantedBy=multi-user.target

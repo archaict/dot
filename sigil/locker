@@ -1,0 +1,5 @@
+#!/bin/sh
+
+MINUTE=20
+exec xautolock -detectsleep -time $MINUTE -locker "/home/codex/bin/lock" -notify 30 -notifier "notify-send 'LOCKING screen in 30 seconds'" &
+exec xidlehook --not-when-fullscreen --timer 1200 "systemctl suspend" .

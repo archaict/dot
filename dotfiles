@@ -1,0 +1,73 @@
+#!/usr/bin/bash
+
+# ░░█▀█░█▀▄░█▀▀░█░█░█▀█░▀█▀░█▀▀░▀█▀░░ #
+# ░░█▀█░█▀▄░█░░░█▀█░█▀█░░█░░█░░░░█░░░ #
+# ░░▀░▀░▀░▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀░░▀░░░ #
+# ░░█▀▄░█▀█░▀█▀░█▀▀░▀█▀░█░░░█▀▀░█▀▀░░ #
+# ░░█░█░█░█░░█░░█▀▀░░█░░█░░░█▀▀░▀▀█░░ #
+# ░░▀▀░░▀▀▀░░▀░░▀░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░░ #
+
+export CONF="$HOME/.config"
+export BINS="$HOME/bin"
+export DOOM_DIR="$HOME/.doom.d"
+
+# sudo pacman -Syyu dunst kitty kmonad leftwm mpd picom polybar qtile ranger rofi starship sxhkd"
+
+DOTFILES="autostart-scripts
+          autostart.sh
+          kmonad kitty ranger
+          dunst mpd picom sxhkd
+          polybar rofi
+          leftwm qtile i3 bspwm
+          zathura
+          starship.toml"
+
+for DOTS in $DOTFILES ; do
+    rm -rf $CONF/$DOTS
+    ln -srfn ./codex/$DOTS $CONF
+    echo "Creating link for $DOTS"
+done
+
+ln -srfn ./sigil $BINS
+sudo ln -srfn ./systemd/* /etc/systemd/system/
+
+if [[ -d $HOME/.doom.d ]]; then
+    rm -rf $DOOM_DIR
+    ln -srfn ./doom $DOOM_DIR
+    echo "Enhancing your DOOM!"
+fi
+
+echo "Set defaults"
+
+xdg-mime default firefox.desktop 'x-scheme-handler/about'
+xdg-mime default firefox.desktop 'x-scheme-handler/htm'
+xdg-mime default firefox.desktop 'x-scheme-handler/html'
+xdg-mime default firefox.desktop 'x-scheme-handler/http'
+xdg-mime default firefox.desktop 'x-scheme-handler/https'
+
+xdg-mime default sxiv.desktop image/jpg
+xdg-mime default sxiv.desktop image/jpeg
+xdg-mime default sxiv.desktop image/png
+xdg-mime default sxiv.desktop image/gif
+
+xdg-mime default xplr.desktop inode/directory
+
+xdg-mime default emacsclient.desktop text/plain
+xdg-mime default emacsclient.desktop text/x-tex
+xdg-mime default emacsclient.desktop text/x-markdown
+xdg-mime default emacsclient.desktop text/x-shellscript
+
+xdg-mime default zathura.desktop application/pdf
+xdg-mime default zathura.desktop application/x-octet-stream
+xdg-mime default zathura.desktop application/force-download
+
+xdg-mime default onlyoffice-desktopeditors.desktop text/csv
+xdg-mime default onlyoffice-desktopeditors.desktop application/odt
+xdg-mime default onlyoffice-desktopeditors.desktop application/ott
+xdg-mime default onlyoffice-desktopeditors.desktop application/ods
+xdg-mime default onlyoffice-desktopeditors.desktop application/ots
+xdg-mime default onlyoffice-desktopeditors.desktop application/msword
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.oasis.opendocument.text
+xdg-mime default onlyoffice-desktopeditors.desktop application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+echo "Done!"

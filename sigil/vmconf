@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cat > $1.conf <<EOF
+>boot="legacy"
+>guest_os="linux"
+>iso="$HOME/Virtualize/$1/$1.iso"
+>disk_img="$HOME/Virtualize/$1/$1.qcow2"
+>disk=40G
+>port_forwards=("8123:8123" "8888:80")
+>usb_devices=("046d:082d" "046d:085e")
+EOF
